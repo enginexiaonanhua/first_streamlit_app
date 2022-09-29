@@ -48,10 +48,11 @@ streamlit.dataframe(my_data_row)
 
 add_my_fruit = streamlit.text_input("What fruit would you like to add?","jackfruit")
 
-my_cur.execute("insert into fruit_load_list(fruit_name) values ('"+add_my_fruit+"')")
+my_cur1 = my_cnx.cursor()
+my_cur1.execute("insert into fruit_load_list(fruit_name) values ('"+add_my_fruit+"')")
 streamlit.text("Thanks for adding " +add_my_fruit)
 
-
+my_cur.execute("select * from PC_RIVERY_DB.public.fruit_load_list")
 my_data_row = my_cur.fetchall()
 streamlit.header("The fruit load list contains--fetchall_New")
 streamlit.dataframe(my_data_row)
